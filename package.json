@@ -1,24 +1,23 @@
 {
-  "name": "top-hashmap",
+  "name": "top-knights_travails",
   "version": "1.0.0",
-  "description": "[Project requirements](https://www.theodinproject.com/lessons/javascript-hashmap)",
-  "main": "hashMap.js",
-  "type": "module",
+  "description": "[Project requirements](https://www.theodinproject.com/lessons/javascript-knights-travails)",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bartek8b/TOP-HashMap.git"
+    "url": "git+https://github.com/bartek8b/TOP-Knights_Travails.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bartek8b/TOP-HashMap/issues"
+    "url": "https://github.com/bartek8b/TOP-Knights_Travails/issues"
   },
-  "homepage": "https://github.com/bartek8b/TOP-HashMap#readme",
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+  "homepage": "https://github.com/bartek8b/TOP-Knights_Travails#readme",
+  "dependencies": {
+    "nodemon": "^3.1.11"
   }
 }
