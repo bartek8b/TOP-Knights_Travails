@@ -28,9 +28,32 @@ function knightMoves(start, end) {
     return null;
   }
 
-  const q = [start];
   const visited = Array.from({ length: 8 }, () => Array(8).fill(false));
-  visited[start[0]][start[1]] = true;
-}
 
-// console.log(possibleMoves([0, 0]));
+  const parentsMap = new Object();
+
+  const q = [start];
+  let index = 0;
+
+  while (index < q.length) {
+    const field = q[index++];
+    if (visited[field[0]][field[1]]) continue;
+    visited[field[0]][field[1]] = true;
+
+    const nexts = possibleMoves(field).filter(
+      (elem) => !visited[elem[0]][elem[1]]
+    );
+    q.push(...nexts);
+
+    for (let move of nexts) {
+      parentsMap[`${move[0]},${move[1]}`] = field;
+    }
+
+    //Dopisać co ma się stać gdy osiągnie end:    
+    // > przerwać (break)
+    // > już poza pętlą
+    // > stworzyc tablice path
+    // > wypelnic ją od konca
+    // > odwrocić kolejnosc tablicy -> path.reverse(); modif oryginalnej tablicy!
+  }
+}
