@@ -28,15 +28,22 @@ function knightMoves(start, end) {
     return null;
   }
 
+  if (start[0] === end[0] && start[1] === end[1]) {
+    console.log('The start field and the end field are the same:', start);
+    return [start];
+  }
+
   const visited = Array.from({ length: 8 }, () => Array(8).fill(false));
 
-  const parentsMap = new Object();
+  const parentsMap = {};
 
   const q = [start];
   let index = 0;
+  let endField = null;
 
   while (index < q.length) {
     const field = q[index++];
+
     if (visited[field[0]][field[1]]) continue;
     visited[field[0]][field[1]] = true;
 
@@ -47,13 +54,35 @@ function knightMoves(start, end) {
 
     for (let move of nexts) {
       parentsMap[`${move[0]},${move[1]}`] = field;
+      if (move[0] === end[0] && move[1] === end[1]) {
+        endField = move;
+        break;
+      }
     }
-
-    //Dopisać co ma się stać gdy osiągnie end:    
-    // > przerwać (break)
-    // > już poza pętlą
-    // > stworzyc tablice path
-    // > wypelnic ją od konca
-    // > odwrocić kolejnosc tablicy -> path.reverse(); modif oryginalnej tablicy!
+    if (endField) break;
   }
+
+  if (!endField) return null;
+
+  const path = [];
+  let curr = endField;
+
+  for (let i = 0; ; i++) {
+    path.push(curr);
+    if (curr[0] === start[0] && curr[1] === start[1]) break;
+    curr = parentsMap[`${curr[0]},${curr[1]}`];
+  }
+
+  path.reverse();
+
+  console.log(`You made it in ${path.length - 1} moves! Here's your path:`);
+  for (let i = 0; i < path.length; i++) {
+    console.log(path[i]);
+  }
+
+  return path;
 }
+
+knightMoves([0, 0], [7, 8]);
+knightMoves([0, 0], [7, 7]);
+knightMoves([0, 0], [0, 0]);
